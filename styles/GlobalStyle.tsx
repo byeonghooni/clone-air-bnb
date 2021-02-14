@@ -8,6 +8,7 @@ const globalStyle = css`
     box-sizing: border-box;
   }
   body {
+    font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
     color: ${palette.black};
   }
 `;
