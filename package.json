@@ -1,0 +1,27 @@
+{
+  "name": "clone-air-bnb",
+  "version": "1.0.0",
+  "description": "> 이 프로젝트는 Next.js와 TypeScript를 사용해서 만든 저장소 입니다.",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byeonghooni/clone-air-bnb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/byeonghooni/clone-air-bnb/issues"
+  },
+  "homepage": "https://github.com/byeonghooni/clone-air-bnb#readme",
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "prettier": "^2.2.1"
+  }
+}
