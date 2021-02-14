@@ -4,7 +4,9 @@
   "description": "> 이 프로젝트는 Next.js와 TypeScript를 사용해서 만든 저장소 입니다.",
   "main": ".eslintrc.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start"
   },
   "repository": {
     "type": "git",
@@ -18,10 +20,22 @@
   },
   "homepage": "https://github.com/byeonghooni/clone-air-bnb#readme",
   "devDependencies": {
+    "@types/node": "^14.14.27",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "@types/styled-components": "^5.1.7",
     "eslint": "^7.19.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.5"
+  },
+  "dependencies": {
+    "babel-plugin-styled-components": "^1.12.0",
+    "next": "^10.0.6",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1"
   }
 }
