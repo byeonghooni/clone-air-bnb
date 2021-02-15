@@ -27,6 +27,12 @@ const Container = styled.form`
     position: relative;
     margin-bottom: 16px;
   }
+
+  .sign-up-password-input-wrapper {
+    svg {
+      cursor: pointer;
+    }
+  }
 `;
 
 const SignUpModal: React.FC = () => {
@@ -89,7 +95,7 @@ const SignUpModal: React.FC = () => {
           onChange={onChangeFirstName}
         />
       </div>
-      <div className='input-wrapper'>
+      <div className='input-wrapper sign-up-password-input-wrapper'>
         <Input
           type={hidePassword ? 'password' : 'text'}
           placeholder='비밀번호 설정하기'
