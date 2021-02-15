@@ -13,9 +13,7 @@ import Selector from '../common/Selector';
 import Button from '../common/Button';
 
 const Container = styled.form`
-  pointer-events: none;
   width: 568px;
-  height: 614px;
   padding: 32px;
   background-color: white;
   z-index: 11;

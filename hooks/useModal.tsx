@@ -3,22 +3,21 @@ import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
+  z-index: 10;
   width: 100%;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .modal-background {
     position: absolute;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.75);
-    z-index: 10;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 `;
 
@@ -56,9 +55,8 @@ const useModal = () => {
             className='modal-background'
             role='presentation'
             onClick={closeModal}
-          >
-            {children}
-          </div>
+          />
+          {children}
         </Container>,
         ref.current,
       );
