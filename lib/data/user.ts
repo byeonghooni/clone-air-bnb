@@ -17,7 +17,7 @@ const exist = ({ email }: { email: string }) => {
   return users.some((user) => user.email === email);
 };
 
-const write = async (users: StoredUserType[]) => {
+const write = (users: StoredUserType[]) => {
   writeFileSync('data/users.json', JSON.stringify(users));
 };
 
