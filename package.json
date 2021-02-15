@@ -21,6 +21,7 @@
   "homepage": "https://github.com/byeonghooni/clone-air-bnb#readme",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
+    "@types/jsonwebtoken": "^8.5.0",
     "@types/node": "^14.14.27",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
@@ -36,6 +37,7 @@
     "babel-plugin-inline-react-svg": "^1.1.2",
     "babel-plugin-styled-components": "^1.12.0",
     "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1",
     "next": "^10.0.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
