@@ -5,7 +5,7 @@ import Link from 'next/link';
 import AirbnbLogoIcon from '../public/static/svg/logo.svg';
 import AirbnbLogoTextIcon from '../public/static/svg/logo_text.svg';
 import palette from '../styles/palette';
-import SignUpModal from './SignUpModal';
+import SignUpModal from './auth/SignUpModal';
 import useModal from '../hooks/useModal';
 
 const Container = styled.div`
