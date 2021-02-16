@@ -1,12 +1,15 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import user from './user';
 import { HYDRATE, createWrapper, MakeStore } from 'next-redux-wrapper';
 import {
   TypedUseSelectorHook,
   useSelector as useReduxSelector,
 } from 'react-redux';
 
+import common from './common';
+import user from './user';
+
 const rootReducer = combineReducers({
+  common: common.reducer,
   user: user.reducer,
 });
 
@@ -27,7 +30,7 @@ const reducer = (state: any, action: any) => {
   return rootReducer(state, action);
 };
 
-export const userSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
+export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 
 const initStore: MakeStore = () => {
   const store = configureStore({
