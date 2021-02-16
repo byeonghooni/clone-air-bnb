@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 
 import palette from '../../styles/palette';
 import CloseXIcon from '../../public/static/svg/modal/modal_close.svg';
@@ -7,11 +8,15 @@ import MailIcon from '../../public/static/svg/auth/mail.svg';
 import PersonIcon from '../../public/static/svg/auth/person.svg';
 import OpenedEyeIcon from '../../public/static/svg/auth/opened_eye.svg';
 import ClosedEyeIcon from '../../public/static/svg/auth/closed_eye.svg';
+
 import { dayList, monthList, yearList } from '../../lib/staticData';
+
 import Input from '../common/Input';
 import Selector from '../common/Selector';
 import Button from '../common/Button';
+
 import { signupAPI } from '../../lib/api/auth';
+import { userActions } from '../../store/user';
 
 const Container = styled.form`
   width: 568px;
@@ -75,6 +80,8 @@ const Container = styled.form`
 `;
 
 const SignUpModal: React.FC = () => {
+  const dispatch = useDispatch();
+
   // input
   const [email, setEmail] = useState('');
   const [lastName, setLastName] = useState('');
@@ -133,7 +140,9 @@ const SignUpModal: React.FC = () => {
         ).toISOString(),
       };
 
-      await signupAPI(signUpBody);
+      const { data } = await signupAPI(signUpBody);
+
+      dispatch(userActions.setLoggedUser(data));
     } catch (e) {
       console.error(e);
     }
