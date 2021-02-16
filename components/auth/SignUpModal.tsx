@@ -11,15 +11,13 @@ import ClosedEyeIcon from '../../public/static/svg/auth/closed_eye.svg';
 
 import { dayList, monthList, yearList } from '../../lib/staticData';
 
+import { signupAPI } from '../../lib/api/auth';
+import { userActions } from '../../store/user';
+import useValidateMode from '../../hooks/useValidateMode';
+
 import Input from '../common/Input';
 import Selector from '../common/Selector';
 import Button from '../common/Button';
-
-import { signupAPI } from '../../lib/api/auth';
-import { userActions } from '../../store/user';
-import { commonActions } from '../../store/common';
-import useValidateMode from '../../hooks/useValidateMode';
-
 import PasswordWarning from './PasswordWarning';
 
 const PASSWORD_MIN_LENGTH = 8;
@@ -82,6 +80,12 @@ const Container = styled.form`
     margin-bottom: 16px;
     padding-bottom: 16px;
     border-bottom: 1px solid ${palette.gray_eb};
+  }
+
+  .sign-up-modal-set-login {
+    color: ${palette.dark_cyan};
+    margin-left: 8px;
+    cursor: pointer;
   }
 `;
 
@@ -347,6 +351,16 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
       <div className='sign-up-modal-submit-button-wrapper'>
         <Button type='submit'>가입하기</Button>
       </div>
+      <p>
+        이미 에어비엔비 계정이 있나요?
+        <span
+          className='sign-up-modal-set-login'
+          role='presentation'
+          onClick={() => {}}
+        >
+          로그인
+        </span>
+      </p>
     </Container>
   );
 };
