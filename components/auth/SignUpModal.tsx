@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 
@@ -85,7 +85,11 @@ const Container = styled.form`
   }
 `;
 
-const SignUpModal: React.FC = () => {
+interface IProps {
+  closeModal: () => void;
+}
+
+const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   const dispatch = useDispatch();
   const { setValidateMode } = useValidateMode();
 
@@ -102,6 +106,13 @@ const SignUpModal: React.FC = () => {
   const [birthMonth, setBirthMonth] = useState<string | undefined>();
 
   const [passwordFocused, setPasswordFocused] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      // validateMode가 다른곳에서 재사용 안되게 하기 위해서 false 처리
+      setValidateMode(false);
+    };
+  }, []);
 
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -135,10 +146,34 @@ const SignUpModal: React.FC = () => {
     setBirthYear(event.target.value);
   };
 
+  const validateSignUpForm = () => {
+    if (!email || !lastName || !firstName || !password) {
+      return false;
+    }
+
+    if (
+      isPasswordHasNameOrEmail ||
+      !isPasswordOverMinLength ||
+      isPasswordHasNumberOrSymbol
+    ) {
+      return false;
+    }
+
+    if (!birthDay || !birthMonth || !birthYear) {
+      return false;
+    }
+
+    return true;
+  };
+
   const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     setValidateMode(true);
+
+    if (!validateSignUpForm()) {
+      return;
+    }
 
     try {
       const signUpBody = {
@@ -154,6 +189,8 @@ const SignUpModal: React.FC = () => {
       const { data } = await signupAPI(signUpBody);
 
       dispatch(userActions.setLoggedUser(data));
+
+      closeModal();
     } catch (e) {
       console.error(e);
     }
@@ -191,7 +228,7 @@ const SignUpModal: React.FC = () => {
 
   return (
     <Container onSubmit={onSubmitSignUp}>
-      <CloseXIcon className='modal-close-x-icon' />
+      <CloseXIcon className='modal-close-x-icon' onClick={closeModal} />
       <div className='input-wrapper'>
         <Input
           type='email'
@@ -283,6 +320,7 @@ const SignUpModal: React.FC = () => {
             defaultValue='월'
             value={birthMonth}
             onChange={onChangeBirthMonth}
+            isValid={!!birthMonth}
           />
         </div>
         <div className='sign-up-modal-birthday-day-selector'>
@@ -292,6 +330,7 @@ const SignUpModal: React.FC = () => {
             defaultValue='일'
             value={birthDay}
             onChange={onChangeBirthDay}
+            isValid={!!birthDay}
           />
         </div>
         <div className='sign-up-modal-birthday-year-selector'>
@@ -301,6 +340,7 @@ const SignUpModal: React.FC = () => {
             defaultValue='년'
             value={birthYear}
             onChange={onChangeBirthYear}
+            isValid={!!birthYear}
           />
         </div>
       </div>
