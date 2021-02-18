@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CloseXIcon from '../../public/static/svg/modal/modal_close.svg';
 import MailIcon from '../../public/static/svg/auth/mail.svg';
@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth';
 import { loginAPI } from '../../lib/api/auth';
 import useValidateMode from '../../hooks/useValidateMode';
+import { userActions } from '../../store/user';
 
 const Container = styled.form`
   width: 568px;
@@ -59,6 +60,12 @@ const LoginModal: React.FC<IProps> = ({ closeModal }) => {
   const [password, setPassword] = useState('');
   const [isPasswordHided, setIsPasswordHided] = useState(true);
 
+  useEffect(() => {
+    return () => {
+      setValidateMode(false);
+    };
+  }, []);
+
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
@@ -87,7 +94,8 @@ const LoginModal: React.FC<IProps> = ({ closeModal }) => {
     const loginBody = { email, password };
     try {
       const { data } = await loginAPI(loginBody);
-      console.log(data);
+      dispatch(userActions.setLoggedUser(data));
+      closeModal();
     } catch (e) {
       console.error(e);
     }
