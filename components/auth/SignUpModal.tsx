@@ -19,6 +19,7 @@ import Input from '../common/Input';
 import Selector from '../common/Selector';
 import Button from '../common/Button';
 import PasswordWarning from './PasswordWarning';
+import { authActions } from '../../store/auth';
 
 const PASSWORD_MIN_LENGTH = 8;
 
@@ -230,6 +231,10 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
     [password],
   );
 
+  const changeToLoginModal = () => {
+    dispatch(authActions.setAuthMode('login'));
+  };
+
   return (
     <Container onSubmit={onSubmitSignUp}>
       <CloseXIcon className='modal-close-x-icon' onClick={closeModal} />
@@ -356,7 +361,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
         <span
           className='sign-up-modal-set-login'
           role='presentation'
-          onClick={() => {}}
+          onClick={changeToLoginModal}
         >
           로그인
         </span>

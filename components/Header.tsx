@@ -9,8 +9,10 @@ import HamburgerIcon from '../public/static/svg/header/hamburger.svg';
 
 import { useSelector } from '../store';
 
-import SignUpModal from './auth/SignUpModal';
+import AuthModal from './auth/AuthModal';
 import useModal from '../hooks/useModal';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../store/auth';
 
 const Container = styled.div`
   position: sticky;
@@ -83,6 +85,7 @@ const Container = styled.div`
 `;
 
 const Header: React.FC = () => {
+  const dispatch = useDispatch();
   const { openModal, ModalPortal, closeModal } = useModal();
   const user = useSelector((state) => state.user);
 
@@ -99,11 +102,21 @@ const Header: React.FC = () => {
           <button
             type='button'
             className='header-button header-sign-up-button'
-            onClick={openModal}
+            onClick={() => {
+              dispatch(authActions.setAuthMode('signup'));
+              openModal();
+            }}
           >
             회원가입
           </button>
-          <button type='button' className='header-button header-login-button'>
+          <button
+            type='button'
+            className='header-button header-login-button'
+            onClick={() => {
+              dispatch(authActions.setAuthMode('login'));
+              openModal();
+            }}
+          >
             로그인
           </button>
         </div>
@@ -120,7 +133,7 @@ const Header: React.FC = () => {
       )}
 
       <ModalPortal>
-        <SignUpModal closeModal={closeModal} />
+        <AuthModal closeModal={closeModal} />
       </ModalPortal>
     </Container>
   );
