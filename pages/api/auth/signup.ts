@@ -44,7 +44,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     Data.user.write([...users, newUser]);
 
-    const token = jwt.sign(String(newUser.id), process.env.JWT_SECRET);
+    const token = jwt.sign(String(newUser.id), process.env.JWT_SECRET!);
     res.setHeader(
       'Set-Cookie',
       `access-token=${token}; path=/; Expires=${new Date(
