@@ -32,7 +32,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const token = jwt.sign(String(user.id), process.env.JWT_SECRET!);
     res.setHeader(
       'Set-Cookie',
-      `access_toke=${token}; path=/; expires=${new Date(
+      `access_token=${token}; path=/; expires=${new Date(
         Date.now() + 60 * 60 * 24 * 1000 * 3,
       )}; httponly`,
     );

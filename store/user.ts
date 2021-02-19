@@ -22,6 +22,10 @@ const user = createSlice({
         isLogged: true,
       };
     },
+    initUser(state) {
+      state = initialState;
+      return state;
+    },
   },
 });
 
