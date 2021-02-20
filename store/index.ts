@@ -8,11 +8,13 @@ import {
 import common from './common';
 import user from './user';
 import auth from './auth';
+import registerRoom from './registerRoom';
 
 const rootReducer = combineReducers({
   common: common.reducer,
   user: user.reducer,
   auth: auth.reducer,
+  registerRoom: registerRoom.reducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
